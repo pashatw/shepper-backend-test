@@ -48,9 +48,9 @@ We would like you to build a simple API to allow users to manage their stored lo
   - Allows an existing location for the user to be deleted by ID. An empty `204 - No Content` response should be returned.
   
 ### Geolocation Service
-Integrating with some sort of service to provide geolocation is outside of the scope of the test, so we've provided a simple `GeolocationService` interface which provides methods for identifying whether or not a set of coordinates are within a given country, and a method to get a label for a set of coordinates.
+Integrating with some sort of service to provide geolocation is outside of the scope of the test, so we've provided a simple [GeolocationService](https://github.com/shepper-tech/shepper-backend-test/blob/master/app/Services/Geolocation/GeolocationService.php) interface which provides methods for identifying whether or not a set of coordinates are within a given country, and a method to get a label for a set of coordinates.
 
-You'll need to complete the `LocalGeolocationService` implementation using the given information about specific coordinates:
+You'll need to complete the [LocalGeolocationService](https://github.com/shepper-tech/shepper-backend-test/blob/master/app/Services/Geolocation/LocalGeolocationService.php) implementation using the given information about specific coordinates:
 
 - `51.499479, -0.085499`
   - London, GB
@@ -67,7 +67,7 @@ You'll need to complete the `LocalGeolocationService` implementation using the g
 - `50.109852, 8.681891`
   - Frankfurt, DE
   
-For any other coordinates given that don't match the set above, the provided `InvalidCoordinatesException` should be thrown and handled appropriately.
+For any other coordinates given that don't match the set above, the provided [InvalidCoordinatesException](https://github.com/shepper-tech/shepper-backend-test/blob/master/app/Services/Geolocation/InvalidCoordinatesException.php) should be thrown and handled appropriately.
 
 ### Location Response Format
 
