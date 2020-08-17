@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        factory(User::class)->create([
+            'id' => 1,
+            'api_token' => 'one',
+        ]);
+
+        factory(User::class)->create([
+            'id' => 2,
+            'api_token' => 'two',
+        ]);
+
+        factory(User::class)->create([
+            'id' => 3,
+            'api_token' => 'three',
+        ]);
     }
 }
