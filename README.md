@@ -19,6 +19,7 @@ We would like you to build a simple API to allow users to manage their stored lo
 - When saving a new location, a user-friendly label should be generated based on the given coordinates.
 - Users should only be able to have a max of five locations.
 - Users should not be able to view, edit or delete eachother's locations.
+- Attempting to add locations using coordinates other than the mock coordinates given below should return a user-friendly error message.
 
 ### Endpoints
 - `GET /user` _(already implemented)_
@@ -74,6 +75,7 @@ Let's pretend we're building these endpoints to a specification for an app, so p
 
 ```
 {
+  "id": 1,
   "name": "Home",
   "label": "Frankfurt, DE",
   "latitude": "50.109852",
@@ -81,6 +83,30 @@ Let's pretend we're building these endpoints to a specification for an app, so p
   "radius": 25.0
 }
 ```
+
+## :wrench: Setup
+
+The project has been configured with [Laravel Homestead](https://laravel.com/docs/7.x/homestead#per-project-installation) so if you choose to use that, all you need to do is run the provided migration for the users table, and then seed the database with the provided seed users.
+
+### Seed Data
+
+The following users are included in the seed data:
+
+- ID 1
+  - API Token: `one`
+  - Country: `GB`
+  
+- ID 2
+  - API Token: `two`
+  - Country: `FR`
+  
+- ID 3
+  - API Token: `three`
+  - Country: `DE`
+  
+### Authentication
+
+The base API has been configured to use the [TokenGuard](https://github.com/laravel/framework/blob/7.x/src/Illuminate/Auth/TokenGuard.php) which expects the API token to be passed as a Bearer token in the `Authorization` header.
 
 ## :eyes: Pointers
 We're most interested in the following areas:
@@ -91,6 +117,8 @@ We're most interested in the following areas:
 We're also keen to see strict adherance to a particular coding style of your choice (we use PSR12).
 
 If you run low on time we'd rather see one well implemented endpoint (such as the "Add Location" endpoint) with really good test coverage as opposed to all endpoints with light or no test coverage.
+
+If you have any trouble, questions or feel anything wasn't clearly explained please reach out to us!
 
 ## :postbox: Submission
 Feel free to fork this repository and once you're happy with your work just add me ([@nickma42](https://github.com/nickma42)) as a contributor.
