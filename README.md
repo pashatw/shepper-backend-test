@@ -76,7 +76,7 @@ Let's pretend we're building these endpoints to a specification for an app, so p
 ```
 {
   "id": 1,
-  "name": "Home",
+  "title": "Home",
   "label": "Frankfurt, DE",
   "latitude": "50.109852",
   "longitude": "8.681891",
