@@ -44,4 +44,33 @@ class LocalGeolocationService implements GeolocationService
             'country_code' => 'DE',
         ],
     ];
+
+    public function areCoordinatesInCountry(string $latitude, string $longitude, string $countryCode): bool
+    {
+        $place = $this->getPlace($latitude, $longitude);
+
+        return $place['country_code'] === $countryCode;
+    }
+
+    public function getLabelForCoordinates(string $latitude, string $longitude): string
+    {
+        $place = $this->getPlace($latitude, $longitude);
+
+        return sprintf('%s, %s', $place['label'], $place['country_code']);
+    }
+
+    private function getPlace(string $latitude, string $longitude): array
+    {
+        $place =  collect($this->places)->first(
+            function (array $place) use ($latitude, $longitude) {
+                return $place['latitude'] === $latitude and $place['longitude'] === $longitude;
+            }
+        );
+
+        if (is_null($place)) {
+            throw new InvalidCoordinatesException;
+        }
+
+        return $place;
+    }
 }

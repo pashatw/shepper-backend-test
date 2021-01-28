@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/user', 'API\UserController@detail')->name('api.user.detail');
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
+    // location
+    Route::get('/locations', 'API\LocationController@detail')->name('api.location.detail');
+    Route::post('/locations', 'API\LocationController@create')->name('api.location.create');
+    Route::put('/locations/{location}', 'API\LocationController@update')->name('api.location.update');
+    Route::delete('/locations/{location}', 'API\LocationController@delete')->name('api.location.delete');
 });

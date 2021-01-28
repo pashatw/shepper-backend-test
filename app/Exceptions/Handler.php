@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -51,5 +54,22 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? $this->responseJson($exception->getMessage(), [], Response::HTTP_UNAUTHORIZED)
+                    : redirect()->guest(route('/'));
+    }
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return $this->responseJson('The given data is invalid', ['errors' => $exception->errors()], $exception->status);
+    }
+
+    private function responseJson($message, $data, $code, $success = 0, $failed = 1)
+    {
+        return response()->json(compact("success", "failed", "message", "data"), $code); 
     }
 }

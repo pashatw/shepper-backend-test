@@ -21,7 +21,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'id' => 1
+                'success' => 1,
+                'failed' => 0,
+                'message' => null,
+                'data' => [
+                    'id' => 1,
+                ]
             ]);
     }
 }

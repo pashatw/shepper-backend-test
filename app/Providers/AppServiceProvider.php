@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Geolocation\GeolocationService;
+use App\Services\Geolocation\LocalGeolocationService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(GeolocationService::class, LocalGeolocationService::class);
     }
 }
