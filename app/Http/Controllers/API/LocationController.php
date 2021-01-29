@@ -63,7 +63,7 @@ class LocationController extends Controller
         return $this->responseJson([]);
     }
 
-    protected function getLabel(Request $request): ?string
+    public function getLabel(Request $request): ?string
     {
         if ($request->input('latitude') === null or $request->input('longitude') === null) {
             return null;

@@ -12,9 +12,10 @@ class InvalidCoordinatesException extends \RuntimeException implements Responsab
     public function toResponse($request)
     {
         return response()->json([
-            'errors' => [
-                'general' => [sprintf('The coordinates [%s,%s] are invalid.', $request->input('latitude'), $request->input('longitude'))],
-            ]
+            'success' => 0,
+            'failed' => 1,
+            'message' => sprintf('The coordinates [%s,%s] are invalid.', $request->input('latitude'), $request->input('longitude')),
+            'data' => [],
         ], 422);
     }
 }

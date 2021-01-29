@@ -10,7 +10,7 @@ class MaxLocationException extends \RuntimeException implements Responsable
     {
         return response()->json([
         	'success' => 0,
-        	'error' => 1,
+        	'failed' => 1,
         	'message' => sprintf('Cannot create location more than %d locations', config('shepper.max_location_user')),
         	'data' => [],
         ], 422);

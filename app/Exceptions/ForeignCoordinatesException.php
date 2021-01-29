@@ -10,7 +10,7 @@ class ForeignCoordinatesException extends \RuntimeException implements Responsab
     {
     	return response()->json([
         	'success' => 0,
-        	'error' => 1,
+        	'failed' => 1,
         	'message' => sprintf("The coordinates does not belong to user's country: %s", $request->user()->country_code),
         	'data' => [],
         ], 422);
